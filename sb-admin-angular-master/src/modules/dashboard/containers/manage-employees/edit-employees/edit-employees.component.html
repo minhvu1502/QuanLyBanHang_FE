@@ -1,0 +1,56 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Employee</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group" [formGroup]="formEdit">
+          <div class="form-group" hidden>
+            <label for="maNhanVien">Mã Nhân Viên</label>
+            <input type="text" name="" class="form-control" formControlName="maNhanVien" id="maNhanVien">
+          </div>
+          <div class="form-group">
+            <label for="tenNhanVien">Tên Nhân Viên</label>
+            <input type="text" name="" class="form-control" formControlName="tenNhanVien" id="tenNhanVien">
+          </div>
+          <div class="form-group">
+            <label for="gioiTinh">Giới Tính</label>
+            <select class="form-control" formControlName="gioiTinh" name="" id="gioiTinh">
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Chưa Xác Định">Chưa Xác Định</option>
+            </select>
+          </div>
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" formControlName="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" type="date">
+            <!-- <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+            </div> -->
+          </div>
+          <div class="form-group">
+            <label for="gioiTinh">Địa Chỉ</label>
+            <input type="text" name="" id="gioiTinh" class="form-control" formControlName="diaChi" placeholder="" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label for="gioiTinh">Số Điện Thoại</label>
+            <input type="text" name="" id="gioiTinh" class="form-control" formControlName="dienThoai" placeholder="" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label for="queQuan">Mã Quê</label>
+            <select [(ngModel)]="model"  class="form-control" formControlName="queQuan" name="" id="queQuan">
+              <option [selected] = "" value="{{item.maQue}}" *ngFor="let item of listQue">{{item.tenQue}}</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Cross click')" ><i class="fa fa-window-close-o" aria-hidden="true"></i> Close</button>
+      <button type="button" class="btn btn-success" (click)="editEmployee()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+    </div>
+  </ng-template>
+  

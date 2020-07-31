@@ -1,0 +1,72 @@
+<ng-template #content let-modal *ngIf="IsShow">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formAdd" (ngSubmit)="addEmployee()">
+        <div class="form-group">
+          <label for="maNhanVien">Mã Nhân Viên</label>
+          <input type="text" name="" class="form-control" formControlName="maNhanVien" id="maNhanVien">
+          <div *ngIf="submitted && formAdd.controls['maNhanVien'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['maNhanVien'].errors?.required">Mã Nhân Viên is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="tenNhanVien">Tên Nhân Viên</label>
+          <input type="text" name="" class="form-control" formControlName="tenNhanVien" id="tenNhanVien">
+          <div *ngIf="submitted && formAdd.controls['tenNhanVien'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['tenNhanVien'].errors?.required">Tên Nhân Viên is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="gioiTinh">Giới Tính</label>
+          <select class="form-control" formControlName="gioiTinh" name="" id="gioiTinh">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Chưa Xác Định">Chưa Xác Định</option>
+          </select>
+        </div>
+        <label for="dateOfBirth">Ngày Sinh</label>
+        <div class="input-group">
+          <input id="dateOfBirth" formControlName="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" type="date">
+          <!-- <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div> -->
+          <div *ngIf="submitted && formAdd.controls['dateOfBirth'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['dateOfBirth'].errors?.required">Ngày Sinh is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="gioiTinh">Địa Chỉ</label>
+          <input type="text" name="" id="gioiTinh" class="form-control" formControlName="diaChi" placeholder="" aria-describedby="helpId">
+          <div *ngIf="submitted && formAdd.controls['diaChi'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['diaChi'].errors?.required">Địa Chỉ is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="gioiTinh">Số Điện Thoại</label>
+          <input type="text" name="" id="gioiTinh" class="form-control" formControlName="dienThoai" placeholder="" aria-describedby="helpId">
+          <div *ngIf="submitted && formAdd.controls['dienThoai'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['dienThoai'].errors?.required">Số Điện Thoại is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="MaQue">Mã Quê</label>
+          <select  class="form-control" formControlName="queQuan" name="" id="maQue">
+            <option *ngFor="let item of listQue" value="{{item.maQue}}">{{item.tenQue}}</option>
+          </select>
+          <div *ngIf="submitted && formAdd.controls['queQuan'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['queQuan'].errors?.required">Giới Tính is required</div>
+        </div>
+        </div>
+        <div class="form-group" align="center">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')" ><i class="fa fa-window-close" aria-hidden="true"></i> Close</button>
+          <button type="submit" class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Mới</button>
+        </div>
+      </form>
+    </div>
+    
+  </ng-template>
