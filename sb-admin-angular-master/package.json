@@ -52,6 +52,7 @@
         "ng-bootstrap": "^1.6.3",
         "ng-uikit-pro-standard": "^1.0.0",
         "ng2-bootstrap": "^1.6.3",
+        "ng2-search-filter": "^0.5.1",
         "ngx-bootstrap": "^5.6.1",
         "ngx-spinner": "^10.0.1",
         "object-hash": "2.0.3",

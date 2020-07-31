@@ -29,6 +29,7 @@ export class ManageEmployeesComponent implements OnInit {
     public tableWidget: any;
     pageSize = 5;
     page = 1;
+    searchedKeyword!: string;
     subscription!: Subscription;
     ngOnInit(): void {
         this.subscription = this.manageEmployee.GetListEmployee().subscribe(result => {

@@ -9,7 +9,7 @@ import { NavigationModule } from '@modules/navigation/navigation.module';
 import { ChartsModule } from '@modules/charts/charts.module';
 import { TablesModule } from '@modules/tables/tables.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 /* Components */
 import * as dashboardComponents from './components';
 
@@ -37,6 +37,7 @@ import { ShowDetailComponent } from './containers/manage-employees/show-detail/s
         NavigationModule,
         ChartsModule,
         TablesModule,
+        Ng2SearchPipeModule,
         NgxSpinnerModule,
     ],
     providers: [
