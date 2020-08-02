@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.loginService.CheckLogin(this.loginModel).subscribe(result => {
             const x = this.checkValid(result);
             if (x === 1) {
-                localStorage.setItem('user', JSON.stringify(this.loginModel));
+                sessionStorage.setItem('user', JSON.stringify(this.loginModel));
             }
         });
     }

@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 export class LoginGuard implements CanActivate {
     constructor(private router: Router) {}
   public canActivate(): Observable<boolean> {
-        const x = localStorage.getItem('user');
+        const x = sessionStorage.getItem('user');
       if (x != null) {
         this.router.navigateByUrl('/dashboard');
         return of(false);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ChildActivationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
     title = 'Quản Lý Bán Hàng';
     constructor(public router: Router, private titleService: Title) {
         this.router.events
@@ -20,5 +20,11 @@ export class AppComponent {
                 }
                 this.titleService.setTitle(snapshot.data.title || 'Quản Lý Bán Hàng');
             });
+    }
+    ngOnInit(): void {
+    }
+    ngOnDestroy(): void {
+        alert('KKK');
+        localStorage.removeItem('user');
     }
 }

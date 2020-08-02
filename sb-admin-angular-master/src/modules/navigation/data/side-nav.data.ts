@@ -98,7 +98,7 @@ export const sideNavItems: SideNavItems = {
                     },
                     {
                         text: 'Quê Quán',
-                        link: '/auth/register',
+                        link: '/dashboard/hometown',
                     },
                 ],
             },

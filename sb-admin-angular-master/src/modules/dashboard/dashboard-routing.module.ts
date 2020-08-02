@@ -73,6 +73,14 @@ export const ROUTES: Routes = [
         canActivate: [DashboardGuard],
         component: dashboardContainers.LightComponent,
     },
+    {
+        path: 'hometown',
+        data: {
+            title: 'Quản Lý Quê Quán',
+        } as SBRouteData,
+        canActivate: [DashboardGuard],
+        component: dashboardContainers.ManageHometownComponent,
+    },
 ];
 @NgModule({
     imports: [DashboardModule, RouterModule.forChild(ROUTES)],

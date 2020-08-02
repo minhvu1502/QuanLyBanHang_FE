@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 export class DashboardGuard implements CanActivate {
     constructor(private router: Router) {}
     public canActivate(): Observable<boolean> {
-        const x = localStorage.getItem('user');
+        const x = sessionStorage.getItem('user');
         console.log(x);
         if (x === null) {
             alert('Bạn chưa đăng nhập');

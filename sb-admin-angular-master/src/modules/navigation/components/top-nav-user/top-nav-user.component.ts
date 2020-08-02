@@ -8,9 +8,16 @@ import { UserService } from '@modules/auth/services';
     styleUrls: ['top-nav-user.component.scss'],
 })
 export class TopNavUserComponent implements OnInit {
-    constructor(public userService: UserService) {}
-    ngOnInit() {}
+    constructor() {}
+    user: any;
+    ngOnInit() {  
+         // tslint:disable-next-line: no-non-null-assertion
+         const myData = JSON.parse(sessionStorage.getItem('user')!);
+         console.log(myData);
+         this.user = myData;
+    }
+    getUser() {}
     Logout(): void {
-        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '@modules/dashboard/models/employee';
 import { ManageEmployeesService } from '@modules/dashboard/services/manage-employees.service';
@@ -17,8 +17,8 @@ export class EditEmployeesComponent implements OnInit {
     listQue!: any[];
     check!: false;
     modalReference: any;
-    maQue!: string;
     model: any;
+    maQue: any;
     employee!: Employee;
     formEdit = new FormGroup({
         maNhanVien: new FormControl(),
@@ -37,21 +37,26 @@ export class EditEmployeesComponent implements OnInit {
     uploadComplete() {
         this.uploaded.emit('complete');
     }
+
     show(item: Employee): void {
-        const que = this.listQue.filter(result => result.maQue === item.maQue);
-        this.maQue = que[0].maQue;
+        const x = document.getElementsByClassName('sel');
+        let i = 0;
+        for (let index = 0; index < this.listQue.length; index++) {
+            if (this.listQue[index].maQue === item.maQue) {
+                i = index;
+                break;
+            }
+            // x.selectedIndex = i;
+        }
         this.formEdit.controls.maNhanVien.setValue(item.maNhanVien);
         this.formEdit.controls.dateOfBirth.setValue(item.ngaySinh);
         this.formEdit.controls.tenNhanVien.setValue(item.ten);
         this.formEdit.controls.gioiTinh.setValue(item.gioiTinh);
         this.formEdit.controls.diaChi.setValue(item.diaChi);
         this.formEdit.controls.dienThoai.setValue(item.soDienThoai);
+        this.formEdit.controls.queQuan.setValue(item.maQue);
         this.open(this.childModal);
     }
-    selectOption(id: number) {
-        //getted from event
-        console.log(id);
-      }
     open(content: any) {
         this.modalReference = this.modalService.open(content, {
             ariaLabelledBy: 'modal-basic-title',

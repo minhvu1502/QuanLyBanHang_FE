@@ -41,8 +41,8 @@
           </div>
           <div class="form-group">
             <label for="queQuan">Mã Quê</label>
-            <select [(ngModel)]="model"  class="form-control" formControlName="queQuan" name="" id="queQuan">
-              <option [selected] = "" value="{{item.maQue}}" *ngFor="let item of listQue">{{item.tenQue}}</option>
+            <select class="sel"  class="form-control" formControlName="queQuan" name="" id="queQuan">
+              <option value="{{item.maQue}}" *ngFor="let item of listQue">{{item.tenQue}}</option>
             </select>
           </div>
         </div>

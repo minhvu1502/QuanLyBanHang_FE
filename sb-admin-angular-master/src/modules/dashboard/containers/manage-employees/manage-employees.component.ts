@@ -52,4 +52,7 @@ export class ManageEmployeesComponent implements OnInit {
     showDetail(item: any): void {
         this.detail.show(item);
     }
+    change(event: any): void{
+        this.pageSize = event;
+    }
 }

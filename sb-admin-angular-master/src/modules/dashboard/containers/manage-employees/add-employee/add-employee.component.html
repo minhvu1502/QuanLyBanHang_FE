@@ -59,7 +59,7 @@
             <option *ngFor="let item of listQue" value="{{item.maQue}}">{{item.tenQue}}</option>
           </select>
           <div *ngIf="submitted && formAdd.controls['queQuan'].errors?.required" class="alert alert-danger">
-            <div *ngIf="formAdd.controls['queQuan'].errors?.required">Giới Tính is required</div>
+            <div *ngIf="formAdd.controls['queQuan'].errors?.required">Mã Quê is required</div>
         </div>
         </div>
         <div class="form-group" align="center">

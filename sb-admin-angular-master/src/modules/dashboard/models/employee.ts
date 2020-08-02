@@ -8,5 +8,5 @@ export interface Employee {
     status?: boolean;
     createBy?: string;
     editBy?: string;
-    maQue?: string;
+    maQue: string;
 }
