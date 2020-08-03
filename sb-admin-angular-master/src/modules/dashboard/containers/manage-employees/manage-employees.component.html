@@ -40,10 +40,10 @@
                             <td>{{item.ten}}</td>
                             <td>{{item.ngaySinh | date: 'mediumDate'}}</td>
                             <td>
-                                <button *ngIf="item.status === true" (click)="updateStatus(item)" type="button"
+                                <button *ngIf="item.status === 'True'" (click)="updateStatus(item)" type="button"
                                     class="btn btn-success"> <i class="fa fa-check-circle" aria-hidden="true"></i>
                                     Active</button>
-                                <button *ngIf="item.status === false" type="button" (click)="updateStatus(item)"
+                                <button *ngIf="item.status === 'False'" type="button" (click)="updateStatus(item)"
                                     class="btn btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     Deactive</button>
                             </td>

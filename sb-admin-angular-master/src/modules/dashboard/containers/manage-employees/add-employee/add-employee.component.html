@@ -54,6 +54,16 @@
         </div>
         </div>
         <div class="form-group">
+          <label for="gioiTinh">Trạng Thái</label>
+          <select class="form-control" formControlName="status" name="" id="status">
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+          <div *ngIf="submitted && formAdd.controls['status'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['status'].errors?.required">Trạng Thái is required</div>
+        </div>
+        </div>
+        <div class="form-group">
           <label for="MaQue">Mã Quê</label>
           <select  class="form-control" formControlName="queQuan" name="" id="maQue">
             <option *ngFor="let item of listQue" value="{{item.maQue}}">{{item.tenQue}}</option>

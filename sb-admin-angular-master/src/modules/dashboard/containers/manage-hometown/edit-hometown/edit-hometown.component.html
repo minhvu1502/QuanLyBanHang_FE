@@ -1,0 +1,40 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit HomeTown</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group" [formGroup]="formEdit">
+          <div class="form-group" hidden>
+            <label for="maNhanVien">Mã Quê</label>
+            <input type="text" name="" class="form-control" formControlName="maQue" id="maNhanVien">
+          </div>
+          <div class="form-group">
+            <label for="tenNhanVien">Tên Quê</label>
+            <input type="text" name="" class="form-control" formControlName="tenQue" id="tenNhanVien">
+            <div *ngIf="submitted && formEdit.controls['tenQue'].errors?.required" class="alert alert-danger">
+              <div *ngIf="formEdit.controls['tenQue'].errors?.required">Tên Quê Quán is required</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="gioiTinh">Trạng Thái</label>
+            <select class="form-control" formControlName="status" name="" id="gioiTinh">
+              <option  value="True">True</option>
+              <option  value="False">False</option>
+            </select>
+            <div *ngIf="submitted && formEdit.controls['status'].errors?.required" class="alert alert-danger">
+              <div *ngIf="formEdit.controls['status'].errors?.required">Trạng Thái is required</div>
+          </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Cross click')" ><i class="fa fa-window-close-o" aria-hidden="true"></i> Close</button>
+      <button type="button" class="btn btn-success" (click)="editHomeTown()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+    </div>
+  </ng-template>
+  

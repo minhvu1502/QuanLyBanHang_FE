@@ -1,3 +1,4 @@
+import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Route } from '@angular/compiler/src/core';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -29,6 +30,8 @@ export class AddEmployeeComponent implements OnInit {
         diaChi: new FormControl('', [Validators.required]),
         dienThoai: new FormControl('', [Validators.required]),
         queQuan: new FormControl('', [Validators.required]),
+        status: new FormControl('', [Validators.required]),
+        // status: new FormControl('', Validators.required),
     });
     constructor(
         private modalService: NgbModal,
@@ -44,6 +47,7 @@ export class AddEmployeeComponent implements OnInit {
         this.formAdd.controls.diaChi.setValue('');
         this.formAdd.controls.dienThoai.setValue('');
         this.formAdd.controls.queQuan.setValue('');
+        this.formAdd.controls.status.setValue('');
         this.submitted = false;
     }
     uploadComplete() {
@@ -75,15 +79,19 @@ export class AddEmployeeComponent implements OnInit {
         );
     }
     addEmployee(): void {
-      this.submitted = true;
-      if (this.formAdd.invalid) {
-        return;
+        this.submitted = true;
+        if (this.formAdd.invalid) {
+            return;
       }
+        const status = this.formAdd.get('status')?.value;
+        console.log(status);
         const employee: Employee = {
             maNhanVien: this.formAdd.get('maNhanVien')?.value,
             ten: this.formAdd.get('tenNhanVien')?.value,
             gioiTinh: this.formAdd.get('gioiTinh')?.value,
             ngaySinh: this.formAdd.get('dateOfBirth')?.value,
+            status: this.formAdd.get('status')?.value,
+            // status: this.formAdd.get('status')?.value,
             diaChi: this.formAdd.get('diaChi')?.value,
             soDienThoai: this.formAdd.get('dienThoai')?.value,
             maQue: this.formAdd.get('queQuan')?.value,
@@ -92,8 +100,8 @@ export class AddEmployeeComponent implements OnInit {
         this.employeeService.AddEmployee(employee).subscribe(result => {
             if (result === true) {
                 alert('Thêm mới thành công');
-                this.uploadComplete();
                 this.clearForm();
+                this.uploadComplete();
                 this.modalReference.dismiss();
             } else {
                 alert('Mã nhân viên không hợp lệ');

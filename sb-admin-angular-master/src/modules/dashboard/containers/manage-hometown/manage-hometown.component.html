@@ -1,12 +1,12 @@
 <sb-layout-dashboard>
     <sb-card>
         <div class="card-header" align="center">
-            <i class="fa fa-address-book" aria-hidden="true"></i> Danh Sách Nhân Viên
+            <i class="fa fa-address-book" aria-hidden="true"></i> Danh Sách Quê Quán
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-xl-7">
-                    <button (click)="addModal()" type="button" class="btn btn-success"><i class="fa fa-plus-circle"
+                    <button (click)="show()" type="button" class="btn btn-success"><i class="fa fa-plus-circle"
                         aria-hidden="true"></i>Thêm Mới</button>
                 </div>
                 <div class="col-xl-5">
@@ -21,9 +21,7 @@
                         <tr>
                             <th>#ID</th>
                             <!-- <th>Image</th> -->
-                            <th>Tên
-                            </th>
-                            <th>Ngày Sinh
+                            <th>Tên Quê
                             </th>
                             <th>Status</th>
                             <th>Action</th>
@@ -34,23 +32,22 @@
                             <p style="color: white">Please Wait. </p>  
                             </ngx-spinner>  -->
                         <tr
-                            *ngFor="let item of listEmployees | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchedKeyword">
-                            <td>{{item.maNhanVien}}</td>
+                            *ngFor="let item of listQue | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchedKeyword">
+                            <td>{{item.maQue}}</td>
                             <!-- <td><img src="{{blog.image}}" class="col-md-3"></td> -->
-                            <td>{{item.ten}}</td>
-                            <td>{{item.ngaySinh | date: 'mediumDate'}}</td>
+                            <td>{{item.tenQue}}</td>
                             <td>
-                                <button *ngIf="item.status === true" (click)="updateStatus(item)" type="button"
+                                <button *ngIf="item.trangThai === 'True'" (click)="updateStatus(item)" type="button"
                                     class="btn btn-success"> <i class="fa fa-check-circle" aria-hidden="true"></i>
                                     Active</button>
-                                <button *ngIf="item.status === false" type="button" (click)="updateStatus(item)"
+                                <button *ngIf="item.trangThai === 'False'" type="button" (click)="updateStatus(item)"
                                     class="btn btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     Deactive</button>
                             </td>
                             <td class="action" align="center">
                                 <button type="button" (click)="showDetail(item)" class="action1 btn btn-primary"><i
                                         class="fa fa-eye" aria-hidden="true"></i>Detail</button>
-                                <button type="button" class="action1 btn btn-warning" (click)="openModal(item)"><i
+                                <button type="button" class="action1 btn btn-warning" (click)="editHomeTown(item)"><i
                                         class="fa fa-pencil-square" aria-hidden="true"></i> Edit</button>
                                 <button type="button" class="action1 btn btn-danger"
                                     (click)="deleteEmployee(item.maNhanVien)"><i class="fa fa-window-close"
@@ -61,7 +58,7 @@
                     <span *ngIf="!subscription?.closed">loading...</span>
                 </table>
                 <div class="col-12 justify-content-center">
-                    <ngb-pagination [ellipses] = "true" [rotate]="true" [boundaryLinks]="true" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listEmployees.length">
+                    <ngb-pagination [ellipses] = "true" [rotate]="true" [boundaryLinks]="true" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listQue.length">
                     </ngb-pagination>
                   </div>
                   <!-- <div class="form-group">
@@ -73,11 +70,11 @@
                     </select>
                   </div> -->
             </div>
-            <sb-edit-employees (uploaded)="ngOnInit()"></sb-edit-employees>
-            <sb-add-employee (uploaded)="ngOnInit()"></sb-add-employee>
-            <sb-delete-employee (uploaded)="ngOnInit()"></sb-delete-employee>
-            <sb-update-status (uploaded)="ngOnInit()"></sb-update-status>
-            <sb-show-detail></sb-show-detail>
+            <sb-edit-hometown (uploaded)="ngOnInit()"></sb-edit-hometown>
+            <sb-add-hometown (uploaded)="ngOnInit()"></sb-add-hometown>
+            <!-- <sb-delete-hometown (uploaded)="ngOnInit()"></sb-delete-hometown>
+            <sb-update-hometown (uploaded)="ngOnInit()"></sb-update-hometown>
+            <sb-show-detail></sb-show-detail> -->
         </div>
     </sb-card>
 </sb-layout-dashboard>

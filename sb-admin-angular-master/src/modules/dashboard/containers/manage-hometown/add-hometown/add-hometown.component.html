@@ -1,0 +1,41 @@
+<ng-template #content let-modal *ngIf="IsShow">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Hometown</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formAdd" (ngSubmit)="addHometown()">
+        <div class="form-group">
+          <label for="maNhanVien">Mã Quê Quán</label>
+          <input type="text" name="" class="form-control" formControlName="maQue" id="maNhanVien">
+          <div *ngIf="submitted && formAdd.controls['maQue'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['maQue'].errors?.required">Mã Quê is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="tenNhanVien">Tên Quê Quán</label>
+          <input type="text" name="" class="form-control" formControlName="tenQue" id="tenNhanVien">
+          <div *ngIf="submitted && formAdd.controls['tenQue'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['tenQue'].errors?.required">Tên Quê Quán is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="gioiTinh">Trạng Thái</label>
+          <select class="form-control" formControlName="status" name="" id="status">
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+          <div *ngIf="submitted && formAdd.controls['status'].errors?.required" class="alert alert-danger">
+            <div *ngIf="formAdd.controls['status'].errors?.required">Trạng Thái is required</div>
+        </div>
+        </div>
+        <div class="form-group" align="center">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')" ><i class="fa fa-window-close" aria-hidden="true"></i> Close</button>
+          <button type="submit" class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Mới</button>
+        </div>
+      </form>
+    </div>
+    
+  </ng-template>
