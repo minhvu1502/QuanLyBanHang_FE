@@ -1,9 +1,8 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { EventEmitter } from 'protractor';
 import { last } from 'rxjs/operators';
 
 @Component({
@@ -12,8 +11,8 @@ import { last } from 'rxjs/operators';
     styleUrls: ['./edit-hometown.component.scss'],
 })
 export class EditHometownComponent implements OnInit {
-  @ViewChild('content') modal!: ModalDirective;
-  @Output() uploaded = new EventEmitter();
+    @ViewChild('content') modal!: ModalDirective;
+    @Output() uploaded = new EventEmitter<string>();
     formEdit: FormGroup = new FormGroup({
         maQue: new FormControl('', Validators.required),
         tenQue: new FormControl('', Validators.required),
@@ -31,6 +30,9 @@ export class EditHometownComponent implements OnInit {
       this.formEdit.controls.tenQue.setValue(item.tenQue);
       this.formEdit.controls.status.setValue(item.trangThai);
       this.open(this.modal);
+    }
+    uploadComplete() {
+        this.uploaded.emit('complete');
     }
     open(content: any) {
       this.modalReference = this.modalService.open(content, {
@@ -67,21 +69,16 @@ export class EditHometownComponent implements OnInit {
             trangThai: this.formEdit.get('status')?.value,
       }
       console.log(hometown);
-      this.queService.EditHomeTown(hometown).subscribe(
-          val => {
+        this.queService.EditHomeTown(hometown).subscribe(val => {
               if (val === true) {
-                  alert('Sửa thành công');
-              } else{
-                  alert('Sửa thất bại');
-              }
-          },
-          err => alert('Sửa thất bại')
-      );
-      this.uploadComplete();
+                alert('Sửa thành công');
+                this.uploadComplete();
         this.modalReference.dismiss();
-  }
-  uploadComplete() {
-    this.uploaded.emit('complete');
-}
+            } else {
+                alert('Sửa thất bại');
+            }
+        });
+    }
+  
     ngOnInit(): void {}
 }

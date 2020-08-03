@@ -31,8 +31,7 @@
                         <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
                             <p style="color: white">Please Wait. </p>  
                             </ngx-spinner>  -->
-                        <tr
-                            *ngFor="let item of listQue | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchedKeyword">
+                        <tr *ngFor="let item of listQue | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchedKeyword">
                             <td>{{item.maQue}}</td>
                             <!-- <td><img src="{{blog.image}}" class="col-md-3"></td> -->
                             <td>{{item.tenQue}}</td>
@@ -50,12 +49,12 @@
                                 <button type="button" class="action1 btn btn-warning" (click)="editHomeTown(item)"><i
                                         class="fa fa-pencil-square" aria-hidden="true"></i> Edit</button>
                                 <button type="button" class="action1 btn btn-danger"
-                                    (click)="deleteEmployee(item.maNhanVien)"><i class="fa fa-window-close"
+                                    (click)="deleteHometown(item.maQue)"><i class="fa fa-window-close"
                                         aria-hidden="true"></i> Delete</button>
                             </td>
                         </tr>
                     </tbody>
-                    <span *ngIf="!subscription?.closed">loading...</span>
+                    <!-- <span *ngIf="!subscription?.closed">loading...</span> -->
                 </table>
                 <div class="col-12 justify-content-center">
                     <ngb-pagination [ellipses] = "true" [rotate]="true" [boundaryLinks]="true" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listQue.length">
@@ -72,8 +71,8 @@
             </div>
             <sb-edit-hometown (uploaded)="ngOnInit()"></sb-edit-hometown>
             <sb-add-hometown (uploaded)="ngOnInit()"></sb-add-hometown>
-            <!-- <sb-delete-hometown (uploaded)="ngOnInit()"></sb-delete-hometown>
-            <sb-update-hometown (uploaded)="ngOnInit()"></sb-update-hometown>
+            <sb-delete-hometown (uploaded)="ngOnInit()"></sb-delete-hometown>
+            <!-- <sb-update-hometown (uploaded)="ngOnInit()"></sb-update-hometown>
             <sb-show-detail></sb-show-detail> -->
         </div>
     </sb-card>

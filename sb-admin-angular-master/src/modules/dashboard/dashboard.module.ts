@@ -29,6 +29,7 @@ import { ShowDetailComponent } from './containers/manage-employees/show-detail/s
 import { ManageHometownComponent } from './containers/manage-hometown/manage-hometown.component';
 import { AddHometownComponent } from './containers/manage-hometown/add-hometown/add-hometown.component';
 import { EditHometownComponent } from './containers/manage-hometown/edit-hometown/edit-hometown.component';
+import { DeleteHometownComponent } from './containers/manage-hometown/delete-hometown/delete-hometown.component';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { EditHometownComponent } from './containers/manage-hometown/edit-hometow
         ManageHometownComponent,
         AddHometownComponent,
         EditHometownComponent,
+        DeleteHometownComponent,
     ],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
