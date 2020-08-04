@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'sb-edit-status',
@@ -9,19 +9,18 @@ import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
   styleUrls: ['./edit-status.component.scss']
 })
 export class EditStatusComponent implements OnInit {
-
-  @ViewChild('content') public childModal!: ModalDirective;
+    @ViewChild('content') public childModal!: ModalDirective;
     @Output() uploaded = new EventEmitter<string>();
     modalReference: any;
     closeResult: any;
     queQuan: any;
     constructor(private modalService: NgbModal, private homeService: QueQuanService) {}
-    update1(item: any): void {
-        this.queQuan = item;
-        this.open(this.childModal);
-    }
     uploadComplete() {
         this.uploaded.emit('complete');
+    }
+    recvData(item: any): void{
+        this.queQuan = item;
+        this.open(this.childModal);
     }
     submitStatus(): void {
         const status: any = {
@@ -29,7 +28,7 @@ export class EditStatusComponent implements OnInit {
             Status: this.queQuan.trangThai,
         };
         console.log(status);
-        this.homeService.UpdateStatus(status).subscribe(result => {
+        this.homeService.EditHomeTown(status).subscribe(result => {
             if (result === true) {
                 alert('Cập nhật thành công');
                 this.modalReference.dismiss();
@@ -64,5 +63,4 @@ export class EditStatusComponent implements OnInit {
         }
     }
     ngOnInit(): void {}
-
 }

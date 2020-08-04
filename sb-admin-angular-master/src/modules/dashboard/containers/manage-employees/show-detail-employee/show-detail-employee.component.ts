@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
 
 @Component({
-    selector: 'sb-show-detail',
-    templateUrl: './show-detail.component.html',
-    styleUrls: ['./show-detail.component.scss'],
+  selector: 'sb-show-detail-employee',
+  templateUrl: './show-detail-employee.component.html',
+  styleUrls: ['./show-detail-employee.component.scss']
 })
-export class ShowDetailComponent implements OnInit {
+export class ShowDetailEmployeeComponent implements OnInit {
+
   @ViewChild('content') childModal!: ModalDirective;
     constructor(private modalService: NgbModal, private queService: QueQuanService) {}
   modalReference: any;
@@ -26,24 +27,11 @@ export class ShowDetailComponent implements OnInit {
     queQuan: new FormControl(),
 });
 
-  show(item: any): void{
-    this.open(this.childModal);
-    console.log(item);
-   
-    this.formShow.controls.maNhanVien.setValue(item.maNhanVien);
-    this.formShow.controls.dateOfBirth.setValue(item.ngaySinh);
-    this.formShow.controls.tenNhanVien.setValue(item.ten);
-    this.formShow.controls.gioiTinh.setValue(item.gioiTinh);
-    this.formShow.controls.diaChi.setValue(item.diaChi);
-    this.formShow.controls.dienThoai.setValue(item.soDienThoai);
-       const x = this.listQue.filter(k => k.maQue === item.maQue);
-       this.tenQue = x[0].tenQue;
-  }
   open(content: any) {
     this.modalReference = this.modalService.open(content, {
         ariaLabelledBy: 'modal-basic-title',
         centered: true,
-        size: 'lg',
+        size: 'md',
     });
        this.modalReference.result.then(
            (result: any) => {
@@ -62,6 +50,18 @@ private getDismissReason(reason: any): string {
     } else {
         return `with: ${reason}`;
     }
+}
+showEmployee(item: any): void {
+  this.open(this.childModal);
+  console.log(item);
+  this.formShow.controls.maNhanVien.setValue(item.maNhanVien);
+  this.formShow.controls.dateOfBirth.setValue(item.ngaySinh);
+  this.formShow.controls.tenNhanVien.setValue(item.ten);
+  this.formShow.controls.gioiTinh.setValue(item.gioiTinh);
+  this.formShow.controls.diaChi.setValue(item.diaChi);
+  this.formShow.controls.dienThoai.setValue(item.soDienThoai);
+     const x = this.listQue.filter(k => k.maQue === item.maQue);
+     this.tenQue = x[0].tenQue;
 }
   ngOnInit(): void {
         this.queService.GetAll().subscribe(result => (this.listQue = result));

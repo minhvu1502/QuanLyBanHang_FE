@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import { EditEmployeesComponent } from './edit-employees/edit-employees.component';
-import { ShowDetailComponent } from './show-detail/show-detail.component';
+import { ShowDetailEmployeeComponent } from './show-detail-employee/show-detail-employee.component';
 import { UpdateStatusComponent } from './update-status/update-status.component';
 @Component({
     selector: 'sb-manage-employees',
@@ -24,7 +24,7 @@ export class ManageEmployeesComponent implements OnInit {
     @ViewChild(AddEmployeeComponent) add!: AddEmployeeComponent;
     @ViewChild(DeleteEmployeeComponent) delete!: DeleteEmployeeComponent;
     @ViewChild(UpdateStatusComponent) update!: UpdateStatusComponent;
-    @ViewChild(ShowDetailComponent) detail!: ShowDetailComponent;
+    @ViewChild(ShowDetailEmployeeComponent) detail!: ShowDetailEmployeeComponent;
     listEmployees!: any;
     public tableWidget: any;
     pageSize = 5;
@@ -50,9 +50,9 @@ export class ManageEmployeesComponent implements OnInit {
         this.update.update1(item);
     }
     showDetail(item: any): void {
-        this.detail.show(item);
+        this.detail.showEmployee(item);
     }
-    change(event: any): void{
+    change(event: any): void {
         this.pageSize = event;
     }
 }

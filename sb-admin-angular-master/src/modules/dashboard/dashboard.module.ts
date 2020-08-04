@@ -1,5 +1,5 @@
 /* tslint:disable: ordered-imports*/
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -25,11 +25,13 @@ import { EditEmployeesComponent } from './containers/manage-employees/edit-emplo
 import { AddEmployeeComponent } from './containers/manage-employees/add-employee/add-employee.component';
 import { DeleteEmployeeComponent } from './containers/manage-employees/delete-employee/delete-employee.component';
 import { UpdateStatusComponent } from './containers/manage-employees/update-status/update-status.component';
-import { ShowDetailComponent } from './containers/manage-employees/show-detail/show-detail.component';
 import { ManageHometownComponent } from './containers/manage-hometown/manage-hometown.component';
 import { AddHometownComponent } from './containers/manage-hometown/add-hometown/add-hometown.component';
 import { EditHometownComponent } from './containers/manage-hometown/edit-hometown/edit-hometown.component';
 import { DeleteHometownComponent } from './containers/manage-hometown/delete-hometown/delete-hometown.component';
+import { HomeDetailComponent } from './containers/manage-hometown/home-detail/home-detail.component';
+import { StatusEditComponent } from './containers/manage-hometown/status-edit/status-edit.component';
+import { ShowDetailEmployeeComponent } from './containers/manage-employees/show-detail-employee/show-detail-employee.component';
 
 @NgModule({
     imports: [
@@ -57,12 +59,15 @@ import { DeleteHometownComponent } from './containers/manage-hometown/delete-hom
         AddEmployeeComponent,
         DeleteEmployeeComponent,
         UpdateStatusComponent,
-        ShowDetailComponent,
         ManageHometownComponent,
         AddHometownComponent,
         EditHometownComponent,
         DeleteHometownComponent,
+        HomeDetailComponent,
+        StatusEditComponent,
+        ShowDetailEmployeeComponent,
     ],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardModule {}

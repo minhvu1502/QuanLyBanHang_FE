@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs';
 import { EditEmployeesComponent } from '../manage-employees/edit-employees/edit-employees.component';
 
 import { AddHometownComponent } from './add-hometown/add-hometown.component';
-import { EditHometownComponent } from './edit-hometown/edit-hometown.component';
 import { DeleteHometownComponent } from './delete-hometown/delete-hometown.component';
-import { ShowDetailComponent } from './show-detail/show-detail.component';
-import { HomeDetailComponent } from './home-detail/home-detail.component';
+import { EditHometownComponent } from './edit-hometown/edit-hometown.component';
 import { EditStatusComponent } from './edit-status/edit-status.component';
+import { HomeDetailComponent } from './home-detail/home-detail.component';
+import { StatusEditComponent } from './status-edit/status-edit.component';
 
 @Component({
     selector: 'sb-manage-hometown',
@@ -21,7 +21,7 @@ export class ManageHometownComponent implements OnInit {
     @ViewChild(EditHometownComponent) edit!: EditHometownComponent;
     @ViewChild(DeleteHometownComponent) delete!: DeleteHometownComponent;
     @ViewChild(HomeDetailComponent) detail!: HomeDetailComponent;
-    @ViewChild(EditStatusComponent) editStatus!:EditStatusComponent;
+    @ViewChild(StatusEditComponent) editStatus!: StatusEditComponent;
     constructor(private homeService: QueQuanService) {}
     subscription!: Subscription;
     listQue!: any[];
@@ -39,8 +39,8 @@ export class ManageHometownComponent implements OnInit {
    showDetail(item: any) {
         this.detail.show(item);
     }
-    updateStatus (item: any){
-        this.editStatus.update1(item);
+    updateStatus(item: any): void {
+        this.editStatus.recvData(item);
     }
     ngOnInit(): void {
         this.homeService.GetAll().subscribe(val => {

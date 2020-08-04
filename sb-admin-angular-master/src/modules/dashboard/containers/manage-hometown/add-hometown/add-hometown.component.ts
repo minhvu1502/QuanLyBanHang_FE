@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'sb-add-hometown',
@@ -12,6 +12,7 @@ import { QueQuanService } from '@modules/dashboard/services/que-quan.service';
 export class AddHometownComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Output() uploaded = new EventEmitter<string>();
+  constructor(private modalService: NgbModal, private queService: QueQuanService) {}
   modalReference!: any;
   closeResult = '';
   listQue!: any[];
@@ -19,11 +20,11 @@ export class AddHometownComponent implements OnInit {
   submitted = false;
   formAdd = new FormGroup({
       maQue: new FormControl('', [Validators.required]),
-      tenQue: new FormControl('', [Validators.required]),
+        tenQue: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
       // status: new FormControl('', Validators.required),
   });
-    constructor(private modalService: NgbModal, private queService: QueQuanService) {}
+
   clearForm(): void {
       this.formAdd.controls.maQue.setValue('');
       this.formAdd.controls.tenQue.setValue('');
@@ -47,7 +48,7 @@ export class AddHometownComponent implements OnInit {
       this.modalReference = this.modalService.open(content, {
           ariaLabelledBy: 'modal-basic-title',
           centered: true,
-          size: 'md ',
+          size: 'md',
       });
       this.modalReference.result.then(
           (result: any) => {

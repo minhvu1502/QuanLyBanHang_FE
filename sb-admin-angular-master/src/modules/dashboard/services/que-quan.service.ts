@@ -11,6 +11,7 @@ export class QueQuanService {
     ApiAdd = 'https://localhost:44330/api/quequan/addhometown';
     ApiEdit = 'https://localhost:44330/api/quequan/edithometown';
     ApiDelete = 'https://localhost:44330/api/quequan/deletehometown/';
+    ApiUpdateStatus = 'https://localhost:44330/api/quequan/UpdateStatus';
     constructor(private httpCLient: HttpClient) {}
     GetAll(): Observable<any> {
         return this.httpCLient.get(this.ApiUrl);
@@ -23,5 +24,8 @@ export class QueQuanService {
     }
     DeleteHomeTown(maQue: any): Observable<any> {
         return this.httpCLient.get(this.ApiDelete + maQue);
+    }
+    UpdateHomeTown(item: any): Observable<any> {
+        return this.httpCLient.post(this.ApiUpdateStatus, item);
     }
 }

@@ -24,7 +24,7 @@ export class HomeDetailComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {
         ariaLabelledBy: 'modal-basic-title',
         centered: true,
-        size: 'lg',
+        size: 'md',
     });
        this.modalReference.result.then(
            (result: any) => {
