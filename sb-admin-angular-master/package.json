@@ -42,7 +42,7 @@
         "angular-datatables": "^9.0.2",
         "angular-font-awesome": "^3.1.2",
         "babel-preset-es2015": "^6.24.1",
-        "chart.js": "2.9.3",
+        "chart.js": "2.9.4",
         "datatables.net": "^1.10.21",
         "datatables.net-bs": "^1.10.21",
         "datatables.net-bs4": "^1.10.21",
